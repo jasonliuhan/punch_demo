@@ -20,12 +20,19 @@ export default class HomeWindow extends Component {
     v1:'video1'
   };
 
+  goWeb = () => {
+    const url = "https://forms.gle/jkNPfDQPxtYqzcFf8";
+    window.open(url);
+  };
+  goPDF = () => {
+    const url = "./Punch Games TOS.pdf";
+    window.open(url);
+  };
+
   swiperAnimation = () => {
-    setTimeout(() => {
       this.setState({
         isshow: true,
       });
-    }, 2000);
   };
 
   showTime = () => {
@@ -95,8 +102,8 @@ export default class HomeWindow extends Component {
               src="./start.mp4"
             ></video>
           </div>
-          <div className={styles.logoBlock}>
-            <img src={LogoText} />
+          <div className={`${styles.logoBlock} ${this.state.isshow ? styles.anmationShow : ''}`}>
+            <img  src={LogoText} />
           </div>
           <div className={styles.timeBlock}>
             <div className={styles.timeDown}>
@@ -115,8 +122,18 @@ export default class HomeWindow extends Component {
               <img src={SecondsUnit} />
             </div>
           </div>
-          <div className={styles.buttonBlock}>
+          <div  onClick={() => {
+                  this.goWeb();
+                }} className={styles.buttonBlock}>
             <img src={Button} />
+          </div>
+          <div
+          className={styles.termsBlock}
+            onClick={() => {
+              this.goPDF();
+            }}
+          >
+            Terms & Conditions of Service
           </div>
         </div>
       </div>
