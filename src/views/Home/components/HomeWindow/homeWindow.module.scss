@@ -1,0 +1,85 @@
+.home_page {
+    min-height: 100vh;
+    width: 100%;
+    position: relative;
+    .headBlock {
+        width: 100%;
+        height: 100vh;
+        max-height: 8.14rem !important;
+        position: relative;
+
+        .video_block {
+            display: block;
+            position: absolute;
+            bottom: 0;
+
+            .video {
+                width: 100%;
+                position: relative;
+            }
+
+            .show {
+                display: block;
+            }
+
+            .hidden {
+                display: none;
+            }
+        }
+
+        .logoBlock {
+            position: relative;
+            width: 0.72rem;
+            padding: 0.8rem;
+
+            img {
+                width: 0.72rem;
+            }
+        }
+
+        .timeBlock {
+            position: relative;
+            width: 6.17rem;
+            margin: 0 auto;
+
+            .timeUnit {
+                margin-top: 0rem;
+                display: flex;
+                justify-content: space-around;
+                align-items: center;
+                height: 0.5rem;
+
+                img {
+                    height: 0.5rem;
+                }
+            }
+
+            .timeDown {
+                display: flex;
+                justify-content: space-around;
+                align-items: center;
+                color: #ffffff;
+                font-size: 0.9rem;
+                .timeText {
+                    width: 1.3rem;
+                    text-align: center;
+                    font-family: DsDigib;
+                }
+            }
+
+        }
+
+        .buttonBlock {
+            position: relative;
+            width: 100%;
+
+            img {
+                width: 2.8rem;
+                margin: 1.2rem auto 0 auto;
+                display: block;
+                cursor: pointer;
+            }
+        }
+    }
+
+}
