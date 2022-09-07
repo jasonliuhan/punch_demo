@@ -17,6 +17,7 @@ export default class HomeWindow extends Component {
     Hours: 0,
     Minutes: 0,
     Seconds: 0,
+    v1:'video1'
   };
 
   swiperAnimation = () => {
@@ -47,8 +48,23 @@ export default class HomeWindow extends Component {
     });
   };
 
+  // 监听
+  watchVideo = () => {
+    var elevideo = document.getElementById("video1");
+    console.log(elevideo)
+    elevideo.addEventListener(
+      "ended",
+      () => {
+        //结束
+        console.log("播放结束");
+        this.swiperAnimation();
+      },
+      false
+    );
+  };
+
   componentDidMount() {
-    this.swiperAnimation();
+    this.watchVideo();
     setInterval(() => {
       this.showTime();
     }, 1000);
@@ -58,49 +74,50 @@ export default class HomeWindow extends Component {
     return (
       <div className={styles.home_page}>
         <div className={styles.headBlock}>
-        <div className={styles.video_block}>
-          <video
-            className={`${styles.video} ${
-              this.state.isshow ? styles.show : styles.hidden
-            }`}
-            autoPlay
-            loop
-            muted
-            src="./loop.mp4"
-          ></video>
-          <video
-            className={`${styles.video} ${
-              this.state.isshow ? styles.hidden : styles.show
-            }`}
-            autoPlay
-            muted
-            src="./start.mp4"
-          ></video>
-        </div>
-        <div className={styles.logoBlock}>
-          <img src={LogoText} />
-        </div>
-        <div className={styles.timeBlock}>
-        <div className={styles.timeDown}>
-            <div className={styles.timeText}>{this.state.Days}</div>
-            <div>:</div>
-            <div className={styles.timeText}>{this.state.Hours}</div>
-            <div>:</div>
-            <div className={styles.timeText}>{this.state.Minutes}</div>
-            <div>:</div>
-            <div className={styles.timeText}>{this.state.Seconds}</div>
+          <div className={styles.video_block}>
+            <video
+              
+              className={`${styles.video} ${
+                this.state.isshow ? styles.show : styles.hidden
+              }`}
+              autoPlay
+              loop
+              muted
+              src="./loop.mp4"
+            ></video>
+            <video
+            id={this.state.v1}
+              className={`${styles.video} ${
+                this.state.isshow ? styles.hidden : styles.show
+              }`}
+              autoPlay
+              muted
+              src="./start.mp4"
+            ></video>
           </div>
-          <div className={styles.timeUnit}>
-            <img src={DayUnit}></img>
-            <img src={HoursUnit} />
-            <img src={MinutesUnit} />
-            <img src={SecondsUnit} />
+          <div className={styles.logoBlock}>
+            <img src={LogoText} />
           </div>
-   
-        </div>
-        <div className={styles.buttonBlock}>
-          <img src={Button} />
-        </div>
+          <div className={styles.timeBlock}>
+            <div className={styles.timeDown}>
+              <div className={styles.timeText}>{this.state.Days}</div>
+              <div>:</div>
+              <div className={styles.timeText}>{this.state.Hours}</div>
+              <div>:</div>
+              <div className={styles.timeText}>{this.state.Minutes}</div>
+              <div>:</div>
+              <div className={styles.timeText}>{this.state.Seconds}</div>
+            </div>
+            <div className={styles.timeUnit}>
+              <img src={DayUnit}></img>
+              <img src={HoursUnit} />
+              <img src={MinutesUnit} />
+              <img src={SecondsUnit} />
+            </div>
+          </div>
+          <div className={styles.buttonBlock}>
+            <img src={Button} />
+          </div>
         </div>
       </div>
     );
