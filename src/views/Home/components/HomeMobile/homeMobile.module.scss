@@ -8,6 +8,8 @@
         height: 100vh;
         overflow: hidden ;
         position: relative;
+        // background-image: url(../../../../assets/home/1662568382081.jpg);
+        // background-size: 100% 100%;
 
         .video_block {
             display: block;
@@ -25,6 +27,9 @@
 
             .hidden {
                 display: none;
+            }
+            .iosImg{
+                margin-top: 5rem;
             }
         }
 

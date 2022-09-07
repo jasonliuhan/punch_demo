@@ -40,6 +40,8 @@
 
             .show {
                 display: block;
+                top: 8.16rem;
+                z-index: 9;
             }
 
             .hidden {
@@ -52,6 +54,7 @@
             width: 0.72rem;
             padding: 0.8rem;
             opacity: 1;
+            z-index: 99;
 
             img {
                 width: 0.72rem;
@@ -63,6 +66,7 @@
             position: relative;
             width: 6.17rem;
             margin: 0 auto;
+            z-index: 99;
 
             .timeUnit {
                 margin-top: 0rem;
@@ -77,6 +81,7 @@
             }
 
             .timeDown {
+                z-index: 99;
                 display: flex;
                 justify-content: space-around;
                 align-items: center;
@@ -93,6 +98,7 @@
         }
 
         .buttonBlock {
+            z-index: 99;
             position: relative;
             width: 100%;
 

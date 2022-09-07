@@ -1,7 +1,7 @@
 import PropTypes from "prop-types";
 import React, { Component } from "react";
 
-import styles from "./homeWindow.module.scss";
+import styles from "./homeMobile.module.scss";
 
 import LogoText from "../../../../assets/home/logoText.png";
 import Button from "../../../../assets/home/button.png";
@@ -10,14 +10,14 @@ import HoursUnit from "../../../../assets/home/Hours.png";
 import MinutesUnit from "../../../../assets/home/Minutes.png";
 import SecondsUnit from "../../../../assets/home/Seconds.png";
 
-export default class HomeWindow extends Component {
+export default class HomeMobileAn extends Component {
   state = {
     isshow: false,
     Days: 0,
     Hours: 0,
     Minutes: 0,
     Seconds: 0,
-    v1:'video1'
+    v1: "video1",
   };
 
   goWeb = () => {
@@ -30,9 +30,9 @@ export default class HomeWindow extends Component {
   };
 
   swiperAnimation = () => {
-      this.setState({
-        isshow: true,
-      });
+    this.setState({
+      isshow: true,
+    });
   };
 
   showTime = () => {
@@ -58,12 +58,10 @@ export default class HomeWindow extends Component {
   // 监听
   watchVideo = () => {
     var elevideo = document.getElementById("video1");
-    console.log(elevideo)
+    console.log(elevideo);
     elevideo.addEventListener(
       "ended",
       () => {
-        //结束
-        console.log("播放结束");
         this.swiperAnimation();
       },
       false
@@ -78,6 +76,7 @@ export default class HomeWindow extends Component {
   }
 
   render() {
+
     return (
       <div className={styles.home_page}>
         <div className={styles.headBlock}>
@@ -86,21 +85,33 @@ export default class HomeWindow extends Component {
               className={`${styles.video} ${
                 this.state.isshow ? styles.show : styles.hidden
               }`}
-              autoPlay
-              loop
               muted
-              src="./loop.mp4"
+              autoPlay
+              preload
+              loop
+              x5-video-player-fullscreen="true"
+              x5-playsinline
+              playsinline
+              webkit-playsinline
+              src="./loopMobile.mp4"
             ></video>
             <video
-            id={this.state.v1}
-              className={`${styles.video}`}
-              autoPlay
+              id={this.state.v1}
+              className={`${styles.video} ${
+                this.state.isshow ? styles.hidden : styles.show
+              }`}
               muted
-              src="./start.mp4"
+              autoPlay
+              preload
+              x5-video-player-fullscreen="true"
+              x5-playsinline
+              playsinline
+              webkit-playsinline
+              src="./startMobile.mp4"
             ></video>
           </div>
-          <div className={`${styles.logoBlock} ${this.state.isshow ? styles.anmationShow : ''}`}>
-            <img  src={LogoText} />
+          <div className={styles.logoBlock}>
+            <img src={LogoText} />
           </div>
           <div className={styles.timeBlock}>
             <div className={styles.timeDown}>
@@ -119,13 +130,16 @@ export default class HomeWindow extends Component {
               <img src={SecondsUnit} />
             </div>
           </div>
-          <div  onClick={() => {
-                  this.goWeb();
-                }} className={styles.buttonBlock}>
+          <div
+            onClick={() => {
+              this.goWeb();
+            }}
+            className={styles.buttonBlock}
+          >
             <img src={Button} />
           </div>
           <div
-          className={styles.termsBlock}
+            className={styles.termsBlock}
             onClick={() => {
               this.goPDF();
             }}
