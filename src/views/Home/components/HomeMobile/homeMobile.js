@@ -94,8 +94,8 @@ export default class HomeMobile extends Component {
               className={`${styles.video} ${
                 this.state.isshow ? styles.hidden : styles.show
               }`}
-              autoPlay
               muted
+              controls
               src="./startMobile.mp4"
             ></video>
           </div>
