@@ -85,7 +85,7 @@ export default class HomeMobile extends Component {
                 this.state.isshow ? styles.show : styles.hidden
               }`}
               muted
-              autoplay
+              autoPlay
               preload
               loop
               x5-video-player-fullscreen="true"
@@ -100,9 +100,8 @@ export default class HomeMobile extends Component {
                 this.state.isshow ? styles.hidden : styles.show
               }`}
               muted
-              autoplay
+              autoPlay
               preload
-              loop
               x5-video-player-fullscreen="true"
               x5-playsinline
               playsinline
