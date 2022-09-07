@@ -30,9 +30,9 @@ export default class HomeMobile extends Component {
   };
 
   swiperAnimation = () => {
-      this.setState({
-        isshow: true,
-      });
+    this.setState({
+      isshow: true,
+    });
   };
 
   showTime = () => {
@@ -84,9 +84,14 @@ export default class HomeMobile extends Component {
               className={`${styles.video} ${
                 this.state.isshow ? styles.show : styles.hidden
               }`}
-              autoPlay
-              loop
               muted
+              autoplay
+              preload
+              loop
+              x5-video-player-fullscreen="true"
+              x5-playsinline
+              playsinline
+              webkit-playsinline
               src="./loopMobile.mp4"
             ></video>
             <video
@@ -95,7 +100,13 @@ export default class HomeMobile extends Component {
                 this.state.isshow ? styles.hidden : styles.show
               }`}
               muted
-              controls
+              autoplay
+              preload
+              loop
+              x5-video-player-fullscreen="true"
+              x5-playsinline
+              playsinline
+              webkit-playsinline
               src="./startMobile.mp4"
             ></video>
           </div>
