@@ -9,7 +9,7 @@ import DayUnit from "../../../../assets/home/Days.png";
 import HoursUnit from "../../../../assets/home/Hours.png";
 import MinutesUnit from "../../../../assets/home/Minutes.png";
 import SecondsUnit from "../../../../assets/home/Seconds.png";
-import ImgIos from "../../../../assets/home/1662568117093.jpg"
+import ImgIos from "../../../../assets/home/1662608705628.jpg"
 
 export default class HomeMobileIos extends Component {
   state = {
@@ -76,13 +76,13 @@ export default class HomeMobileIos extends Component {
             <img src={LogoText} />
           </div>
           <div className={styles.timeBlock}>
-            <div className={styles.timeDown}>
+          <div className={styles.timeDown}>
               <div className={styles.timeText}>{this.state.Days}</div>
-              <div>:</div>
+              <div className={`${styles.fontFamily}`} >:</div>
               <div className={styles.timeText}>{this.state.Hours}</div>
-              <div>:</div>
+              <div className={`${styles.fontFamily}`} >:</div>
               <div className={styles.timeText}>{this.state.Minutes}</div>
-              <div>:</div>
+              <div className={`${styles.fontFamily}`} >:</div>
               <div className={styles.timeText}>{this.state.Seconds}</div>
             </div>
             <div className={styles.timeUnit}>

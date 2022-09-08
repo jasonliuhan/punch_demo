@@ -87,12 +87,7 @@ export default class HomeMobileAn extends Component {
               }`}
               muted
               autoPlay
-              preload
               loop
-              x5-video-player-fullscreen="true"
-              x5-playsinline
-              playsinline
-              webkit-playsinline
               src="./loopMobile.mp4"
             ></video>
             <video
@@ -102,11 +97,6 @@ export default class HomeMobileAn extends Component {
               }`}
               muted
               autoPlay
-              preload
-              x5-video-player-fullscreen="true"
-              x5-playsinline
-              playsinline
-              webkit-playsinline
               src="./startMobile.mp4"
             ></video>
           </div>
@@ -116,11 +106,11 @@ export default class HomeMobileAn extends Component {
           <div className={styles.timeBlock}>
             <div className={styles.timeDown}>
               <div className={styles.timeText}>{this.state.Days}</div>
-              <div>:</div>
+              <div className={`${styles.fontFamily}`} >:</div>
               <div className={styles.timeText}>{this.state.Hours}</div>
-              <div>:</div>
+              <div className={`${styles.fontFamily}`} >:</div>
               <div className={styles.timeText}>{this.state.Minutes}</div>
-              <div>:</div>
+              <div className={`${styles.fontFamily}`} >:</div>
               <div className={styles.timeText}>{this.state.Seconds}</div>
             </div>
             <div className={styles.timeUnit}>
