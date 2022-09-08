@@ -102,14 +102,14 @@ export default class HomeWindow extends Component {
           <div className={`${styles.logoBlock} ${this.state.isshow ? styles.anmationShow : ''}`}>
             <img  src={LogoText} />
           </div>
-          <div className={styles.timeBlock}>
+          <div className={`${styles.timeBlock} ${this.state.isshow ? styles.anmationShow : ''}`}>
             <div className={styles.timeDown}>
               <div className={styles.timeText}>{this.state.Days}</div>
-              <div>:</div>
+              <div className={styles.fontFamily} >:</div>
               <div className={styles.timeText}>{this.state.Hours}</div>
-              <div>:</div>
+              <div className={styles.fontFamily} >:</div>
               <div className={styles.timeText}>{this.state.Minutes}</div>
-              <div>:</div>
+              <div className={styles.fontFamily} >:</div>
               <div className={styles.timeText}>{this.state.Seconds}</div>
             </div>
             <div className={styles.timeUnit}>
@@ -121,11 +121,11 @@ export default class HomeWindow extends Component {
           </div>
           <div  onClick={() => {
                   this.goWeb();
-                }} className={styles.buttonBlock}>
+                }} className={`${styles.buttonBlock} ${this.state.isshow ? styles.anmationShow : ''}`}>
             <img src={Button} />
           </div>
           <div
-          className={styles.termsBlock}
+          className={`${styles.termsBlock} ${this.state.isshow ? styles.anmationShow : ''} `}
             onClick={() => {
               this.goPDF();
             }}
