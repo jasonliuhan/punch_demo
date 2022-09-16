@@ -72,7 +72,6 @@ export default class HomeMobileAn extends Component {
   // 监听
   watchVideo = () => {
     var elevideo = document.getElementById("video1");
-    console.log(elevideo);
     elevideo.addEventListener(
       "ended",
       () => {
@@ -94,6 +93,7 @@ export default class HomeMobileAn extends Component {
       <div className={styles.home_page}>
         <div className={styles.headBlock}>
           <div className={styles.video_block}>
+
             <video
               className={`${styles.video} ${
                 this.state.isshow ? styles.show : styles.hidden
@@ -114,7 +114,7 @@ export default class HomeMobileAn extends Component {
             <video
               id={this.state.v1}
               className={`${styles.video} ${
-                this.state.isshow ? styles.hidden : styles.show
+                !this.state.isshow ? styles.show : styles.hidden
               }`}
               autoPlay
               preload="auto"
@@ -131,15 +131,9 @@ export default class HomeMobileAn extends Component {
               />
               您的浏览器不支持 video 标签。
             </video>
-            <video
-              id={this.state.v1}
-              className={`${styles.video} ${
-                this.state.isshow ? styles.hidden : styles.show
-              }`}
-              muted
-              autoPlay
-              src="./startMobile.mp4"
-            ></video>
+
+            
+
           </div>
           <div className={styles.logoBlock}>
             <img src={LogoText} />
