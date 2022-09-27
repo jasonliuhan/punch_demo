@@ -2,6 +2,7 @@
     min-height: 100vh;
     width: 100%;
     position: relative;
+    background-color: #474278;
 
     .headBlock {
         width: 100%;
@@ -11,7 +12,7 @@
 
         .anmationShow {
             animation: opacityShow 0.2s;
-            animation-fill-mode:forwards;
+            animation-fill-mode: forwards;
         }
 
         @keyframes opacityShow {
@@ -95,12 +96,13 @@
                     text-align: center;
                     font-family: DsDigib;
                 }
-                .fontFamily{
+
+                .fontFamily {
                     font-family: DsDigib;
                 }
             }
 
-          
+
 
         }
 
@@ -130,11 +132,159 @@
             color: #ffffff;
         }
     }
+    .headFloat{
+        position: fixed;
+        
+    }
+
+    .balloonBlock {
+        position: relative;
+        height: 9.5rem;
+
+        .balloonVideo {}
+
+        .balloonCardBlock {
+            width: 10.8rem;
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            position: absolute;
+            top: 3.7rem;
+            left: 1.8rem;
+            .balloonCard {
+                width: 5.21rem;
+                height: 2.39rem;
+                background: linear-gradient(180deg, rgba(139, 146, 255, 0.7) 0%, rgba(241, 162, 255, 0.7) 86.9%);
+                mix-blend-mode: normal;
+                opacity: 0.85;
+                box-shadow: inset 0px 0px 0.23rem #F1A3FF;
+                backdrop-filter: blur(6px);
+                border-radius: 0.65rem;
+                display: flex;
+                justify-content: start;
+                align-items: center;
+                margin-bottom: 0.27rem;
+
+                .cardImg {
+                    width: 1.35rem;
+                    height: 1.35rem;
+                    margin-left: 0.56rem;
+
+                    .img {
+                        width: 1.35rem;
+                        height: 1.35rem;
+                    }
+                }
+
+                .cardText {
+                    margin-left: 0.27rem;
+                    text-align: left;
+
+                    .niName {
+                        font-style: normal;
+                        font-weight: 800;
+                        font-size: 0.32rem;
+                        line-height: 0.62rem;
+                        color: #FDFAED;
+                    }
+
+                    .position {
+                        font-weight: 500;
+                        font-size: 0.22rem;
+                        line-height: 0.4rem;
+                        color: #FDFAED;
+
+                    }
+                }
+            }
+        }
+    }
+
+    .friendBlock {
+        .friendText {
+            font-style: normal;
+            font-weight: 800;
+            font-size: 0.6rem;
+            line-height: 1rem;
+            color: #D2D4F2;
+            padding: 0.4rem 0;
+        }
+    }
+
+    .swiperBlock {
+        height: 3.85rem;
+        background: #F3F2FB;
+        display: flex;
+        align-items: center;
+        padding: 0 0.5rem;
+
+        .swiperItem {
+            height: 3.85rem;
+            display: flex;
+            align-items: center;
+        }
+    }
+
+    .surpriseGift {
+        background-color: #4044AD;
+
+        .boxVideo {
+            height: 8.45rem;
+        }
+    }
+
+    .bottomBlock {
+        background: #0F0D0D;
+        position: relative;
+        height: 5.5rem;
+
+        .bottomLogo {
+            padding-top: 0.8rem;
+            padding-left: 1.24rem;
+            text-align: left;
+
+            .bottomLogoImg {
+                width: 1.23rem;
+            }
+        }
+
+        .ActiveText {
+            padding-right: 1.2rem;
+            position: absolute;
+            right: 0;
+            font-weight: 600;
+            font-size: 0.38rem;
+            line-height: 0.8rem;
+            letter-spacing: 0.01em;
+            color: #FFFFFF;
+
+            .ActiveTextBox {
+                text-align: left;
+
+                .text {
+                    font-weight: 400;
+                    font-size: 0.34rem;
+                    line-height: 0.5rem;
+                }
+            }
+        }
+
+        .link {
+            position: absolute;
+            bottom: 0.3rem;
+            left: 0;
+            width: 100%;
+            font-size: 0.2rem;
+            text-align: center;
+        }
+    }
+
 
     .bodyBlock {
         //  height: 400vh;
     }
-    .link{
+
+    .link {
         color: #ffffff;
     }
 

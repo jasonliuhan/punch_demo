@@ -1,6 +1,11 @@
 import React, { Component } from "react";
 import { Link, useNavigate } from "react-router-dom";
 
+import { Swiper, SwiperSlide } from "swiper/react";
+import "swiper/css";
+
+import SwiperCore, { Autoplay, Navigation, Pagination } from "swiper/core";
+
 import styles from "./homeWindow.module.scss";
 
 import LogoText from "../../../../assets/home/logoText.png";
@@ -10,6 +15,16 @@ import HoursUnit from "../../../../assets/home/Hours.png";
 import MinutesUnit from "../../../../assets/home/Minutes.png";
 import SecondsUnit from "../../../../assets/home/Seconds.png";
 
+import SwiperImg1 from "../../../../assets/home/swiper00001.png";
+import SwiperImg2 from "../../../../assets/home/swiper00002.png";
+import SwiperImg3 from "../../../../assets/home/swiper00003.png";
+import SwiperImg4 from "../../../../assets/home/swiper00004.png";
+
+import HeadPortrait1 from "../../../../assets/home/Mask group1.png";
+import HeadPortrait2 from "../../../../assets/home/Mask group2.png";
+import HeadPortrait3 from "../../../../assets/home/Mask group3.png";
+import HeadPortrait4 from "../../../../assets/home/Mask group4.png";
+
 export default class HomeWindow extends Component {
   state = {
     isshow: false,
@@ -18,6 +33,7 @@ export default class HomeWindow extends Component {
     Minutes: 0,
     Seconds: 0,
     v1: "video1",
+    float:false
   };
 
   goWeb = () => {
@@ -68,6 +84,17 @@ export default class HomeWindow extends Component {
     });
   };
 
+  bindEvents() {
+		window.addEventListener('scroll', () => this.handleScroll());
+	};
+
+  handleScroll() {
+		const scrollY = window.scrollY || 0;
+    console.log(scrollY)
+	};
+
+
+
   // 监听
   watchVideo = () => {
     var elevideo = document.getElementById("video1");
@@ -85,150 +112,16 @@ export default class HomeWindow extends Component {
 
   componentDidMount() {
     this.watchVideo();
-    this.init();
+    this.bindEvents()
     setInterval(() => {
       this.showTime();
     }, 1000);
   }
 
-  init() {
-    this.initData();
-    this.initImages();
-    this.handleResize();
-    this.bindEvents();
-  }
-
-  initData() {
-    this.canvas2 = document.getElementById("02-head-bob-turn");
-    this.context = this.canvas2.getContext("2d");
-    this.MAX_LEN = 85;
-    this.imgs = [];
-    this.start = 1;
-    this.oldStart = -1;
-    this.addN = 1;
-    this.interval = 10; // 控制刷新率
-    this.leftY = 0;
-    this.curScrollY = this.getScrollTop();
-    this.startPos = this.curScrollY;
-    this.lastPos = this.curScrollY;
-    this.isStop = false;
-  }
-
-  initImages() {
-    for (let i = 0; i < this.MAX_LEN; i++) {
-      const img = new Image();
-      // img.onload = () => this.imgs[i] = img
-      img.src = this.getImage(i);
-      // 不管加载否 保证顺序
-      this.imgs.push(img);
-    }
-  }
-
-  bindEvents() {
-    window.addEventListener("resize", this.handleResize);
-    window.addEventListener("scroll", this.handleScroll);
-  }
-
-  getScrollTop() {
-    return window.scrollY || 0;
-  }
-
-  getImage(num) {
-    // const srcDir =
-    //   "https://www.apple.com/105/media/us/airpods-pro/2019/1299e2f5_9206_4470_b28e_08307a42f19b/anim/sequence/large/02-head-bob-turn/";
-    // const imgSuffix = ".jpg";
-     const srcDir =
-      "./knuckles/";
-    const imgSuffix = ".png";
-    console.assert(Number.isInteger(num) && num > -1 && num < this.MAX_LEN);
-    const t = ("" + num).padStart(4, "0");
-    return srcDir + t + imgSuffix;
-  }
-
-  isOver() {
-    return this.start < 0 || this.start > this.MAX_LEN - 1;
-  }
-
-  handleScroll = () => {
-    const scrollY = this.getScrollTop();
-    let delta = scrollY - this.curScrollY;
-    const isDown = delta > 0;
-
-    delta = Math.abs(delta) + this.leftY;
-    this.curScrollY = scrollY;
-
-    if (
-      this.isStop &&
-      isDown === this.needDown &&
-      ((isDown && this.curScrollY > this.lastPos) ||
-        (!isDown && this.curScrollY < this.lastPos))
-    ) {
-      this.isStop = false;
-    }
-    if (this.isStop) return;
-
-    // good idea: 补偿
-    const alpha = Math.floor(delta / this.interval) * this.addN || 0;
-    this.leftY = delta % this.interval;
-
-    isDown ? (this.start += alpha) : (this.start -= alpha);
-    if (this.isOver() && !this.isStop) {
-      // this.lastPos = scrollY
-      this.isStop = true;
-      console.log(this.start, scrollY, this.lastPos);
-
-      // TODO: 多个 canvas 用 opacity 切换
-      // this.canvas2.style.cssText = `opacity: 0;`
-    }
-
-    if (this.start < 0) this.start = 0;
-    if (this.start > this.MAX_LEN - 1) this.start = this.MAX_LEN - 1;
-    if (this.startPos >= scrollY) this.start = 0;
-    if (this.oldStart === this.start) return;
-    this.oldStart = this.start;
-    // good idea：记录
-    this.lastPos = scrollY;
-    this.needDown = !isDown;
-
-    this.drawCanvas(this.start);
-  }
-
-  handleResize = () => {
-    const wScale = window.innerWidth / (this.canvas2.width || 1458);
-    const hScale = (window.innerHeight - 52) / (this.canvas2.height || 1458);
-
-    this.canvas2.style.transform = `matrix(${wScale}, 0, 0, ${hScale}, 0, 0)`;
-  }
-
-  drawCanvas(sequence) {
-    this.canvas2 = document.getElementById("02-head-bob-turn");
-    this.context = this.canvas2.getContext("2d");
-
-    // 当前序列帧
-    const imgTemp = this.imgs[sequence];
-    const canvas = this.canvas2;
- 
-    canvas.width = imgTemp.width;
-    canvas.height = imgTemp.height;
-
-    this.context.drawImage(imgTemp, 0, 0);
-  }
-
-  goAgreement = ()=>{
-   window.location.href = '/#/agreement?type=all'
-  }
-
-  componentWillUnmount(){
-    window.removeEventListener("resize", this.handleResize);
-    window.removeEventListener("scroll", this.handleScroll);
-  }
-
-
   render() {
     return (
       <div className={styles.home_page}>
-         {/* <img src="./knuckles/1.png" /> */}
-        <div className={styles.headBlock}>
+        <div className={ `${styles.headBlock}  ${this.state.float?styles.headBlock:''}` }>
           <div className={styles.video_block}>
             <video
               className={`${styles.video} ${
@@ -285,35 +178,133 @@ export default class HomeWindow extends Component {
           >
             <img src={Button} />
           </div>
-          {/* <div
-            className={`${styles.termsBlock} ${
-              this.state.isshow ? styles.anmationShow : ""
-            } `}
-            onClick={() => {
-              this.goAgreement();
-            }}
-          >
-            Terms & Conditions of Service
-          </div> */}
-          <div  className={`${styles.termsBlock} ${
-              this.state.isshow ? styles.anmationShow : ""
-            } `}>
-          <Link
-           className={`${styles.link}`}
-          to={`/agreement/${'type'}`}
-          >
-            Terms & Conditions of Service
-          </Link>
+        </div>
+
+
+        <div className={styles.balloonBlock}>
+          <video
+            className={`${styles.balloonVideo}`}
+            autoPlay
+            loop
+            muted
+            src="./balloonVideo.mp4"
+          ></video>
+          <div className={styles.balloonCardBlock}>
+            <div className={styles.balloonCard}>
+              <div className={styles.cardImg}>
+                <img className={styles.img} src={HeadPortrait1} />
+              </div>
+              <div className={styles.cardText}>
+                <div className={styles.niName}>Boxi Wang</div>
+                <div className={styles.position}>Chief Executive Officer</div>
+              </div>
+            </div>
+            <div className={styles.balloonCard}>
+              <div className={styles.cardImg}>
+                <img className={styles.img} src={HeadPortrait2} />
+              </div>
+              <div className={styles.cardText}>
+                <div className={styles.niName}>Oren Bennett</div>
+                <div className={styles.position}>Chief Business Officer</div>
+              </div>
+            </div>
+            <div className={styles.balloonCard}>
+              <div className={styles.cardImg}>
+                <img className={styles.img} src={HeadPortrait3} />
+              </div>
+              <div className={styles.cardText}>
+                <div className={styles.niName}>William Ni</div>
+                <div className={styles.position}>Chief Technology Officer</div>
+              </div>
+            </div>
+            <div className={styles.balloonCard}>
+              <div className={styles.cardImg}>
+                <img className={styles.img} src={HeadPortrait4} />
+              </div>
+              <div className={styles.cardText}>
+                <div className={styles.niName}>Danni Hu</div>
+                <div className={styles.position}>Chief Marketing Officer</div>
+              </div>
+            </div>
           </div>
         </div>
-       
-        <div className={`${styles.bodyBlock}`}>
-          <canvas id="02-head-bob-turn" width="1200" height="2000"></canvas>
+
+        <div className={styles.friendBlock}>
+          <div className={styles.friendVideo}>
+            <video
+              className={`${styles.video}`}
+              autoPlay
+              loop
+              muted
+              src="./friendVideo.mp4"
+            ></video>
+          </div>
+          <div className={styles.friendText}>Our Backer</div>
+        </div>
+
+        <div className={styles.swiperBlock}>
+          <Swiper
+            spaceBetween={50}
+            slidesPerView={4}
+            autoplay={{
+              delay: 2500,
+              disableOnInteraction: false,
+            }}
+            loop
+            modules={[Autoplay, Pagination]}
+          >
+            <SwiperSlide className={styles.swiperItem}>
+              <img
+                style={{ height: "1.59rem" }}
+                src="https://www.jasontaylor.club/img/swiper00001.png"
+              />
+            </SwiperSlide>
+            <SwiperSlide className={styles.swiperItem}>
+              <img
+                style={{ height: "1.59rem" }}
+                src="https://www.jasontaylor.club/img/swiper00002.png"
+              />
+            </SwiperSlide>
+            <SwiperSlide className={styles.swiperItem}>
+              <img
+                style={{ height: "1.64rem" }}
+                src="https://www.jasontaylor.club/img/swiper00003.png"
+              />
+            </SwiperSlide>
+            <SwiperSlide className={styles.swiperItem}>
+              <img
+                style={{ height: "1.1rem" }}
+                src="https://www.jasontaylor.club/img/swiper00004.png"
+              />
+            </SwiperSlide>
+          </Swiper>
+        </div>
+
+        <div className={styles.surpriseGift}>
+          <video
+            className={`${styles.boxVideo}`}
+            autoPlay
+            loop
+            muted
+            src="./box.mp4"
+          ></video>
+        </div>
+        <div className={styles.bottomBlock}>
+          <div className={styles.bottomLogo}>
+            <img className={styles.bottomLogoImg} src={LogoText} />
+          </div>
+          <div className={styles.ActiveText}>
+            <div className={styles.ActiveTextBox}>
+              <div>Links</div>
+              <div className={styles.text}>Terms</div>
+              <div className={styles.text}>Privacy Policy</div>
+            </div>
+          </div>
+          <Link className={`${styles.link}`} to={`/agreement/${"type"}`}>
+            Terms & Conditions of Service
+          </Link>
         </div>
       </div>
     );
   }
-
-
-
 }
