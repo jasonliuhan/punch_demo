@@ -203,6 +203,11 @@
     }
 
     .friendBlock {
+        .friendVideo{
+            .video{
+                width: 100%;
+            }
+        }
         .friendText {
             font-style: normal;
             font-weight: 800;
@@ -231,7 +236,8 @@
         background-color: #4044AD;
 
         .boxVideo {
-            height: 8.45rem;
+            width: 100%;
+            // height: 8.45rem;
         }
     }
 
