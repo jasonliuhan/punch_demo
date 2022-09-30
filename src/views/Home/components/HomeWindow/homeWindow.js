@@ -8,6 +8,8 @@ import SwiperCore, { Autoplay, Navigation, Pagination } from "swiper/core";
 
 import styles from "./homeWindow.module.scss";
 
+import 'animate.css';
+
 import LogoText from "../../../../assets/home/logoText.png";
 import Button from "../../../../assets/home/button.png";
 import DayUnit from "../../../../assets/home/Days.png";
@@ -33,7 +35,11 @@ export default class HomeWindow extends Component {
     Minutes: 0,
     Seconds: 0,
     v1: "video1",
-    float:false
+    float:false,
+    textYValue:null,
+    textShow:false,
+    balloonCardYValue:null,
+    balloonCardShow:false,
   };
 
   goWeb = () => {
@@ -90,7 +96,19 @@ export default class HomeWindow extends Component {
 
   handleScroll() {
 		const scrollY = window.scrollY || 0;
-    console.log(scrollY)
+    let delta = Math.abs(scrollY)
+    
+    if(scrollY > this.state.textYValue  ){
+      this.setState({
+        textShow:true
+      })
+    }
+
+    if(scrollY > this.state.balloonCardYValue  ){
+      this.setState({
+        balloonCardShow:true
+      })
+    }
 	};
 
 
@@ -113,16 +131,35 @@ export default class HomeWindow extends Component {
   componentDidMount() {
     this.watchVideo();
     this.bindEvents()
+    this.getY()
     setInterval(() => {
       this.showTime();
     }, 1000);
   }
 
+  getY = ()=>{
+    let anchorElement = document.getElementById('text').offsetTop;
+    let balloonCardYValue = document.getElementById('balloon').offsetTop;
+    this.setState({
+      textYValue:anchorElement,
+      balloonCardYValue
+    })
+  }
+
   render() {
     return (
       <div className={styles.home_page}>
-        <div className={ `${styles.headBlock}  ${this.state.float?styles.headBlock:''}` }>
+        <div className={ `${styles.headBlock}  ${this.state.float?styles.headFloat:''}` }>
           <div className={styles.video_block}>
+          <video
+              className={`${styles.video} ${
+                this.state.isshow ? styles.show : styles.hidden
+              }`}
+              autoPlay
+              loop
+              muted
+              src="./loop.mp4"
+            ></video>
             <video
               className={`${styles.video} ${
                 this.state.isshow ? styles.show : styles.hidden
@@ -181,7 +218,7 @@ export default class HomeWindow extends Component {
         </div>
 
 
-        <div className={styles.balloonBlock}>
+        <div className={styles.balloonBlock} id={'balloon'}>
           <video
             className={`${styles.balloonVideo}`}
             autoPlay
@@ -189,7 +226,7 @@ export default class HomeWindow extends Component {
             muted
             src="./balloonVideo.mp4"
           ></video>
-          <div className={styles.balloonCardBlock}>
+          <div className={`${styles.balloonCardBlock} ${this.state.balloonCardShow?'animate__animated animate__zoomIn':''}`}>
             <div className={styles.balloonCard}>
               <div className={styles.cardImg}>
                 <img className={styles.img} src={HeadPortrait1} />
@@ -239,7 +276,7 @@ export default class HomeWindow extends Component {
               src="./friendVideo.mp4"
             ></video>
           </div>
-          <div className={styles.friendText}>Our Backer</div>
+          <div id={'text'} className={`${styles.friendText} ${this.state.textShow?'animate__animated animate__bounce':''} `}>Our Backer</div>
         </div>
 
         <div className={styles.swiperBlock}>
