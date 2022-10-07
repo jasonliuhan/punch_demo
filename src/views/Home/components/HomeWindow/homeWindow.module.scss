@@ -132,11 +132,12 @@
             color: #ffffff;
         }
     }
-    .headFloat{
+
+    .headFloat {
         position: fixed;
         top: 0;
         z-index: 9999;
-        
+
     }
 
     .balloonBlock {
@@ -153,6 +154,8 @@
             position: absolute;
             top: 3.7rem;
             left: 1.8rem;
+            opacity: 0;
+
             .balloonCard {
                 width: 5.21rem;
                 height: 2.39rem;
@@ -200,14 +203,19 @@
                 }
             }
         }
+
+        .balloonCardBlockActive {
+            opacity: 1;
+        }
     }
 
     .friendBlock {
-        .friendVideo{
-            .video{
+        .friendVideo {
+            .video {
                 width: 100%;
             }
         }
+
         .friendText {
             font-style: normal;
             font-weight: 800;
@@ -215,6 +223,11 @@
             line-height: 1rem;
             color: #D2D4F2;
             padding: 0.4rem 0;
+            opacity: 0;
+        }
+
+        .myElement {
+            opacity: 1;
         }
     }
 
@@ -295,5 +308,6 @@
     .link {
         color: #ffffff;
     }
+
 
 }

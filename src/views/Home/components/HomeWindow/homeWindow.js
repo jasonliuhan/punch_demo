@@ -230,7 +230,7 @@ export default class HomeWindow extends Component {
           <div
             className={`${styles.balloonCardBlock} ${
               this.state.balloonCardShow
-                ? "animate__animated animate__zoomIn"
+                ? styles.balloonCardBlockActive + " animate__animated animate__zoomIn"
                 : ""
             }`}
           >
@@ -286,7 +286,7 @@ export default class HomeWindow extends Component {
           <div
             id={"text"}
             className={`${styles.friendText} ${
-              this.state.textShow ? "animate__animated animate__bounce" : ""
+              this.state.textShow ? styles.myElement + ' animate__animated animate__zoomIn' : ""
             } `}
           >
             Our Backer
