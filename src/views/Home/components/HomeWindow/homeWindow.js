@@ -163,15 +163,6 @@ export default class HomeWindow extends Component {
               src="./loop.mp4"
             ></video>
             <video
-              className={`${styles.video} ${
-                this.state.isshow ? styles.show : styles.hidden
-              }`}
-              autoPlay
-              loop
-              muted
-              src="./loop.mp4"
-            ></video>
-            <video
               id={this.state.v1}
               className={`${styles.video}`}
               autoPlay
