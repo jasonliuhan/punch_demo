@@ -232,17 +232,10 @@
     }
 
     .swiperBlock {
-        height: 3.85rem;
+        width: 100%;
+        overflow: hidden;
         background: #F3F2FB;
-        display: flex;
-        align-items: center;
-        padding: 0 0.5rem;
-
-        .swiperItem {
-            height: 3.85rem;
-            display: flex;
-            align-items: center;
-        }
+        padding: 0.3rem 0rem;
     }
 
     .surpriseGift {

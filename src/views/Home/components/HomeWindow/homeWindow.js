@@ -1,10 +1,12 @@
 import React, { Component } from "react";
 import { Link, useNavigate } from "react-router-dom";
 
-import { Swiper, SwiperSlide } from "swiper/react";
-import "swiper/css";
+// import { Swiper, SwiperSlide } from "swiper/react";
+// import "swiper/css";
 
-import SwiperCore, { Autoplay, Navigation, Pagination } from "swiper/core";
+// import SwiperCore, { Autoplay, Navigation, Pagination } from "swiper/core";
+
+import SliderAutoPlay from "./slider";
 
 import styles from "./homeWindow.module.scss";
 
@@ -221,7 +223,8 @@ export default class HomeWindow extends Component {
           <div
             className={`${styles.balloonCardBlock} ${
               this.state.balloonCardShow
-                ? styles.balloonCardBlockActive + " animate__animated animate__zoomIn"
+                ? styles.balloonCardBlockActive +
+                  " animate__animated animate__zoomIn"
                 : ""
             }`}
           >
@@ -277,7 +280,9 @@ export default class HomeWindow extends Component {
           <div
             id={"text"}
             className={`${styles.friendText} ${
-              this.state.textShow ? styles.myElement + ' animate__animated animate__zoomIn' : ""
+              this.state.textShow
+                ? styles.myElement + " animate__animated animate__zoomIn"
+                : ""
             } `}
           >
             Our Backer
@@ -285,41 +290,7 @@ export default class HomeWindow extends Component {
         </div>
 
         <div className={styles.swiperBlock}>
-          <Swiper
-            spaceBetween={50}
-            slidesPerView={4}
-            autoplay={{
-              delay: 2500,
-              disableOnInteraction: false,
-            }}
-            loop
-            modules={[Autoplay, Pagination]}
-          >
-            <SwiperSlide className={styles.swiperItem}>
-              <img
-                style={{ height: "1.59rem" }}
-                src="https://www.jasontaylor.club/img/swiper00001.png"
-              />
-            </SwiperSlide>
-            <SwiperSlide className={styles.swiperItem}>
-              <img
-                style={{ height: "1.59rem" }}
-                src="https://www.jasontaylor.club/img/swiper00002.png"
-              />
-            </SwiperSlide>
-            <SwiperSlide className={styles.swiperItem}>
-              <img
-                style={{ height: "1.64rem" }}
-                src="https://www.jasontaylor.club/img/swiper00003.png"
-              />
-            </SwiperSlide>
-            <SwiperSlide className={styles.swiperItem}>
-              <img
-                style={{ height: "1.1rem" }}
-                src="https://www.jasontaylor.club/img/swiper00004.png"
-              />
-            </SwiperSlide>
-          </Swiper>
+          <SliderAutoPlay />
         </div>
 
         <div className={styles.surpriseGift}>
