@@ -1,16 +1,13 @@
 import React, { Component } from "react";
 import { Link, useNavigate } from "react-router-dom";
 
-// import { Swiper, SwiperSlide } from "swiper/react";
-// import "swiper/css";
-
-// import SwiperCore, { Autoplay, Navigation, Pagination } from "swiper/core";
-
 import SliderAutoPlay from "./slider";
 
 import styles from "./homeWindow.module.scss";
 
 import "animate.css";
+
+import { ScrollPercentage } from "react-scroll-percentage";
 
 import LogoText from "../../../../assets/home/logoText.png";
 import Button from "../../../../assets/home/button.png";
@@ -19,10 +16,7 @@ import HoursUnit from "../../../../assets/home/Hours.png";
 import MinutesUnit from "../../../../assets/home/Minutes.png";
 import SecondsUnit from "../../../../assets/home/Seconds.png";
 
-import SwiperImg1 from "../../../../assets/home/swiper00001.png";
-import SwiperImg2 from "../../../../assets/home/swiper00002.png";
-import SwiperImg3 from "../../../../assets/home/swiper00003.png";
-import SwiperImg4 from "../../../../assets/home/swiper00004.png";
+
 
 import HeadPortrait1 from "../../../../assets/home/Mask group1.png";
 import HeadPortrait2 from "../../../../assets/home/Mask group2.png";
@@ -92,27 +86,6 @@ export default class HomeWindow extends Component {
     });
   };
 
-  bindEvents() {
-    window.addEventListener("scroll", () => this.handleScroll());
-  }
-
-  handleScroll() {
-    const scrollY = window.scrollY || 0;
-    let delta = Math.abs(scrollY);
-
-    if (scrollY > this.state.textYValue) {
-      this.setState({
-        textShow: true,
-      });
-    }
-
-    if (scrollY > this.state.balloonCardYValue) {
-      this.setState({
-        balloonCardShow: true,
-      });
-    }
-  }
-
   // 监听
   watchVideo = () => {
     var elevideo = document.getElementById("video1");
@@ -130,21 +103,10 @@ export default class HomeWindow extends Component {
 
   componentDidMount() {
     this.watchVideo();
-    this.bindEvents();
-    this.getY();
     setInterval(() => {
       this.showTime();
     }, 1000);
   }
-
-  getY = () => {
-    let anchorElement = document.getElementById("text").offsetTop;
-    let balloonCardYValue = document.getElementById("balloon").offsetTop;
-    this.setState({
-      textYValue: anchorElement,
-      balloonCardYValue,
-    });
-  };
 
   render() {
     return (
@@ -172,17 +134,16 @@ export default class HomeWindow extends Component {
               src="./start.mp4"
             ></video>
           </div>
-          <div
-            className={`${styles.logoBlock} ${
+          <div className={`${styles.animationText} ${
               this.state.isshow ? styles.anmationShow : ""
-            }`}
+            }`}>
+          <div
+            className={`${styles.logoBlock}`}
           >
             <img src={LogoText} />
           </div>
           <div
-            className={`${styles.timeBlock} ${
-              this.state.isshow ? styles.anmationShow : ""
-            }`}
+            className={`${styles.timeBlock} `}
           >
             <div className={styles.timeDown}>
               <div className={styles.timeText}>{this.state.Days}</div>
@@ -204,13 +165,18 @@ export default class HomeWindow extends Component {
             onClick={() => {
               this.goWeb();
             }}
-            className={`${styles.buttonBlock} ${
-              this.state.isshow ? styles.anmationShow : ""
-            }`}
+            className={`${styles.buttonBlock} `}
           >
             <img src={Button} />
           </div>
+          </div>
         </div>
+
+        {/* <ScrollPercentage as="div" onChange={(percentage, entry) => {}}>
+          <div className={styles.bodyBlock1}>
+            Plain children are always rendered. Use onChange to monitor state.
+          </div>
+        </ScrollPercentage> */}
 
         <div className={styles.balloonBlock} id={"balloon"}>
           <video
@@ -220,51 +186,69 @@ export default class HomeWindow extends Component {
             muted
             src="./balloonVideo.mp4"
           ></video>
-          <div
-            className={`${styles.balloonCardBlock} ${
-              this.state.balloonCardShow
-                ? styles.balloonCardBlockActive +
-                  " animate__animated animate__zoomIn"
-                : ""
-            }`}
+          <ScrollPercentage
+            as="div"
+            onChange={(percentage, entry) => {
+              if (percentage > 0.32771577380952377) {
+                this.setState({
+                  balloonCardShow: true,
+                });
+              }
+              if (percentage === 0) {
+                this.setState({
+                  balloonCardShow: false,
+                });
+              }
+            }}
           >
-            <div className={styles.balloonCard}>
-              <div className={styles.cardImg}>
-                <img className={styles.img} src={HeadPortrait1} />
+            <div
+              className={`${styles.balloonCardBlock} ${
+                this.state.balloonCardShow
+                  ? styles.balloonCardBlockActive +
+                    " animate__animated animate__zoomIn"
+                  : ""
+              }`}
+            >
+              <div className={styles.balloonCard}>
+                <div className={styles.cardImg}>
+                  <img className={styles.img} src={HeadPortrait1} />
+                </div>
+                <div className={styles.cardText}>
+                  <div className={styles.niName}>Boxi Wang</div>
+                  <div className={styles.position}>Chief Executive Officer</div>
+                </div>
               </div>
-              <div className={styles.cardText}>
-                <div className={styles.niName}>Boxi Wang</div>
-                <div className={styles.position}>Chief Executive Officer</div>
+              <div className={styles.balloonCard}>
+                <div className={styles.cardImg}>
+                  <img className={styles.img} src={HeadPortrait2} />
+                </div>
+                <div className={styles.cardText}>
+                  <div className={styles.niName}>Oren Bennett</div>
+                  <div className={styles.position}>Chief Business Officer</div>
+                </div>
+              </div>
+              <div className={styles.balloonCard}>
+                <div className={styles.cardImg}>
+                  <img className={styles.img} src={HeadPortrait3} />
+                </div>
+                <div className={styles.cardText}>
+                  <div className={styles.niName}>William Ni</div>
+                  <div className={styles.position}>
+                    Chief Technology Officer
+                  </div>
+                </div>
+              </div>
+              <div className={styles.balloonCard}>
+                <div className={styles.cardImg}>
+                  <img className={styles.img} src={HeadPortrait4} />
+                </div>
+                <div className={styles.cardText}>
+                  <div className={styles.niName}>Danni Hu</div>
+                  <div className={styles.position}>Chief Marketing Officer</div>
+                </div>
               </div>
             </div>
-            <div className={styles.balloonCard}>
-              <div className={styles.cardImg}>
-                <img className={styles.img} src={HeadPortrait2} />
-              </div>
-              <div className={styles.cardText}>
-                <div className={styles.niName}>Oren Bennett</div>
-                <div className={styles.position}>Chief Business Officer</div>
-              </div>
-            </div>
-            <div className={styles.balloonCard}>
-              <div className={styles.cardImg}>
-                <img className={styles.img} src={HeadPortrait3} />
-              </div>
-              <div className={styles.cardText}>
-                <div className={styles.niName}>William Ni</div>
-                <div className={styles.position}>Chief Technology Officer</div>
-              </div>
-            </div>
-            <div className={styles.balloonCard}>
-              <div className={styles.cardImg}>
-                <img className={styles.img} src={HeadPortrait4} />
-              </div>
-              <div className={styles.cardText}>
-                <div className={styles.niName}>Danni Hu</div>
-                <div className={styles.position}>Chief Marketing Officer</div>
-              </div>
-            </div>
-          </div>
+          </ScrollPercentage>
         </div>
 
         <div className={styles.friendBlock}>
@@ -277,16 +261,31 @@ export default class HomeWindow extends Component {
               src="./friendVideo.mp4"
             ></video>
           </div>
-          <div
-            id={"text"}
-            className={`${styles.friendText} ${
-              this.state.textShow
-                ? styles.myElement + " animate__animated animate__zoomIn"
-                : ""
-            } `}
+          <ScrollPercentage
+            as="div"
+            onChange={(percentage, entry) => {
+              if (percentage > 0.32771577380952377) {
+                this.setState({
+                  textShow: true,
+                });
+              }
+              if (percentage === 0) {
+                this.setState({
+                  textShow: false,
+                });
+              }
+            }}
           >
-            Our Backer
-          </div>
+            <div
+              className={`${styles.friendText} ${
+                this.state.textShow
+                  ? styles.myElement + " animate__animated animate__fadeInLeftBig"
+                  : ""
+              } `}
+            >
+              Our Backer
+            </div>
+          </ScrollPercentage>
         </div>
 
         <div className={styles.swiperBlock}>

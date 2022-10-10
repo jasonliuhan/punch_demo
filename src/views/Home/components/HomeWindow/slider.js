@@ -6,6 +6,11 @@ import "slick-carousel/slick/slick-theme.css";
 
 import styles from "./slider.module.scss";
 
+import SwiperImg1 from "../../../../assets/home/swiper00001.png";
+import SwiperImg2 from "../../../../assets/home/swiper00002.png";
+import SwiperImg3 from "../../../../assets/home/swiper00003.png";
+import SwiperImg4 from "../../../../assets/home/swiper00004.png";
+
 export default class SliderAutoPlay extends Component {
   render() {
     const settings = {
