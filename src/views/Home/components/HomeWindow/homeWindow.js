@@ -180,9 +180,9 @@ export default class HomeWindow extends Component {
             }
           }}
         >
-          <div className={styles.bodyBlock1}>
+          {/* <div className={styles.bodyBlock1}>
             Plain children are always rendered. Use onChange to monitor state.
-          </div>
+          </div> */}
         </ScrollPercentage>
 
         <div className={styles.bodyBlock2}></div>
