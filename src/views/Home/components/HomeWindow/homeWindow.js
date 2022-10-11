@@ -21,6 +21,8 @@ import HeadPortrait2 from "../../../../assets/home/Mask group2.png";
 import HeadPortrait3 from "../../../../assets/home/Mask group3.png";
 import HeadPortrait4 from "../../../../assets/home/Mask group4.png";
 
+import BoxingSlider from "./boxingSlider";
+
 export default class HomeWindow extends Component {
   state = {
     isshow: false,
@@ -29,12 +31,14 @@ export default class HomeWindow extends Component {
     Minutes: 0,
     Seconds: 0,
     v1: "video1",
+    v2: "video2",
     float: false,
     textYValue: null,
     textShow: false,
     balloonCardYValue: null,
     balloonCardShow: false,
     isScollerActive: false,
+    rotatingActive: false,
   };
 
   goWeb = () => {
@@ -88,7 +92,6 @@ export default class HomeWindow extends Component {
   // 监听
   watchVideo = () => {
     var elevideo = document.getElementById("video1");
-    console.log(elevideo);
     elevideo.addEventListener(
       "ended",
       () => {
@@ -100,11 +103,18 @@ export default class HomeWindow extends Component {
     );
   };
 
+  goTop = () => {
+    window.scrollTo(0, 0);
+  };
+
   componentDidMount() {
     this.watchVideo();
     setInterval(() => {
       this.showTime();
     }, 1000);
+    setTimeout(() => {
+      this.goTop();
+    }, 500);
   }
 
   render() {
@@ -113,7 +123,7 @@ export default class HomeWindow extends Component {
         <div
           className={`${styles.headBlock}  ${
             this.state.float ? styles.headFloat : ""
-          } ${this.state.isScollerActive ? styles.scrollThis : ""} `}
+          } ${this.state.isScollerActive ? styles.scrollThis : ""}`}
         >
           <div className={styles.video_block}>
             <video
@@ -132,15 +142,30 @@ export default class HomeWindow extends Component {
               muted
               src="./start.mp4"
             ></video>
+            <video
+              id={this.state.v2}
+              className={`${styles.videoBoxing} ${
+                this.state.rotatingActive ? styles.show : styles.hidden
+              }`}
+              autoPlay
+              muted
+              src="./boxing.mp4"
+            ></video>
           </div>
           <div
             className={`${styles.animationText} ${
               this.state.isshow ? styles.anmationShow : ""
-            }`}
+            } ${this.state.rotatingActive ? styles.animationTop : ""}`}
           >
             <div className={`${styles.logoBlock}`}>
-              <img src={LogoText} />
+              <img
+                onClick={() => {
+                  this.goTop();
+                }}
+                src={LogoText}
+              />
             </div>
+
             <div className={`${styles.timeBlock} `}>
               <div className={styles.timeDown}>
                 <div className={styles.timeText}>{this.state.Days}</div>
@@ -167,22 +192,42 @@ export default class HomeWindow extends Component {
               <img src={Button} />
             </div>
           </div>
+          <div className={`${styles.boxingContent}`}>
+            <div
+              className={`${styles.boxingText} ${
+                this.state.rotatingActive ? styles.animationLeft : ""
+              }`}
+            >
+              Next Gen Web 3.0 Gaming Platform
+            </div>
+            <div className={styles.disGameBlock}>
+              <div className={styles.disGameTitle}>Discover our games</div>
+              <div className={styles.disGameContent}>Our portfolio of hyper-casual and casual games has over 6 billion downloads and entertain over 300 million people per month.</div>
+            </div>
+            <div className={styles.disGameSwiper}>
+              <BoxingSlider/>
+            </div>
+          </div>
         </div>
 
         <ScrollPercentage
           as="div"
           onChange={(percentage, entry) => {
-            console.log(percentage);
-            if (percentage > 0.9) {
+            if (percentage > 0.996984126984127) {
               this.setState({
-                isScollerActive:false
+                rotatingActive: true,
+              });
+            }
+            if (percentage === 1) {
+              this.setState({
+                isScollerActive: true,
               });
             }
           }}
         >
-          {/* <div className={styles.bodyBlock1}>
-            Plain children are always rendered. Use onChange to monitor state.
-          </div> */}
+          <div className={styles.bodyBlock1}>
+          
+          </div>
         </ScrollPercentage>
 
         <div className={styles.bodyBlock2}></div>
@@ -191,11 +236,7 @@ export default class HomeWindow extends Component {
           <ScrollPercentage
             as="div"
             onChange={(percentage, entry) => {
-              if (percentage === 0) {
-                this.setState({
-                  isScollerActive: true,
-                });
-              }
+              console.log(percentage);
               if (percentage > 0.42771577380952377) {
                 this.setState({
                   balloonCardShow: true,
