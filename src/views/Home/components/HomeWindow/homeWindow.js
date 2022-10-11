@@ -16,8 +16,6 @@ import HoursUnit from "../../../../assets/home/Hours.png";
 import MinutesUnit from "../../../../assets/home/Minutes.png";
 import SecondsUnit from "../../../../assets/home/Seconds.png";
 
-
-
 import HeadPortrait1 from "../../../../assets/home/Mask group1.png";
 import HeadPortrait2 from "../../../../assets/home/Mask group2.png";
 import HeadPortrait3 from "../../../../assets/home/Mask group3.png";
@@ -36,6 +34,7 @@ export default class HomeWindow extends Component {
     textShow: false,
     balloonCardYValue: null,
     balloonCardShow: false,
+    isScollerActive: false,
   };
 
   goWeb = () => {
@@ -114,7 +113,7 @@ export default class HomeWindow extends Component {
         <div
           className={`${styles.headBlock}  ${
             this.state.float ? styles.headFloat : ""
-          }`}
+          } ${this.state.isScollerActive ? styles.scrollThis : ""} `}
         >
           <div className={styles.video_block}>
             <video
@@ -134,62 +133,70 @@ export default class HomeWindow extends Component {
               src="./start.mp4"
             ></video>
           </div>
-          <div className={`${styles.animationText} ${
+          <div
+            className={`${styles.animationText} ${
               this.state.isshow ? styles.anmationShow : ""
-            }`}>
-          <div
-            className={`${styles.logoBlock}`}
+            }`}
           >
-            <img src={LogoText} />
-          </div>
-          <div
-            className={`${styles.timeBlock} `}
-          >
-            <div className={styles.timeDown}>
-              <div className={styles.timeText}>{this.state.Days}</div>
-              <div className={styles.fontFamily}>:</div>
-              <div className={styles.timeText}>{this.state.Hours}</div>
-              <div className={styles.fontFamily}>:</div>
-              <div className={styles.timeText}>{this.state.Minutes}</div>
-              <div className={styles.fontFamily}>:</div>
-              <div className={styles.timeText}>{this.state.Seconds}</div>
+            <div className={`${styles.logoBlock}`}>
+              <img src={LogoText} />
             </div>
-            <div className={styles.timeUnit}>
-              <img src={DayUnit}></img>
-              <img src={HoursUnit} />
-              <img src={MinutesUnit} />
-              <img src={SecondsUnit} />
+            <div className={`${styles.timeBlock} `}>
+              <div className={styles.timeDown}>
+                <div className={styles.timeText}>{this.state.Days}</div>
+                <div className={styles.fontFamily}>:</div>
+                <div className={styles.timeText}>{this.state.Hours}</div>
+                <div className={styles.fontFamily}>:</div>
+                <div className={styles.timeText}>{this.state.Minutes}</div>
+                <div className={styles.fontFamily}>:</div>
+                <div className={styles.timeText}>{this.state.Seconds}</div>
+              </div>
+              <div className={styles.timeUnit}>
+                <img src={DayUnit}></img>
+                <img src={HoursUnit} />
+                <img src={MinutesUnit} />
+                <img src={SecondsUnit} />
+              </div>
             </div>
-          </div>
-          <div
-            onClick={() => {
-              this.goWeb();
-            }}
-            className={`${styles.buttonBlock} `}
-          >
-            <img src={Button} />
-          </div>
+            <div
+              onClick={() => {
+                this.goWeb();
+              }}
+              className={`${styles.buttonBlock} `}
+            >
+              <img src={Button} />
+            </div>
           </div>
         </div>
 
-        {/* <ScrollPercentage as="div" onChange={(percentage, entry) => {}}>
+        <ScrollPercentage
+          as="div"
+          onChange={(percentage, entry) => {
+            console.log(percentage);
+            if (percentage > 0.9) {
+              this.setState({
+                isScollerActive:false
+              });
+            }
+          }}
+        >
           <div className={styles.bodyBlock1}>
             Plain children are always rendered. Use onChange to monitor state.
           </div>
-        </ScrollPercentage> */}
+        </ScrollPercentage>
+
+        <div className={styles.bodyBlock2}></div>
 
         <div className={styles.balloonBlock} id={"balloon"}>
-          <video
-            className={`${styles.balloonVideo}`}
-            autoPlay
-            loop
-            muted
-            src="./balloonVideo.mp4"
-          ></video>
           <ScrollPercentage
             as="div"
             onChange={(percentage, entry) => {
-              if (percentage > 0.32771577380952377) {
+              if (percentage === 0) {
+                this.setState({
+                  isScollerActive: true,
+                });
+              }
+              if (percentage > 0.42771577380952377) {
                 this.setState({
                   balloonCardShow: true,
                 });
@@ -201,6 +208,14 @@ export default class HomeWindow extends Component {
               }
             }}
           >
+            <video
+              className={`${styles.balloonVideo}`}
+              autoPlay
+              loop
+              muted
+              src="./balloonVideo.mp4"
+            ></video>
+
             <div
               className={`${styles.balloonCardBlock} ${
                 this.state.balloonCardShow
@@ -279,7 +294,8 @@ export default class HomeWindow extends Component {
             <div
               className={`${styles.friendText} ${
                 this.state.textShow
-                  ? styles.myElement + " animate__animated animate__fadeInLeftBig"
+                  ? styles.myElement +
+                    " animate__animated animate__fadeInLeftBig"
                   : ""
               } `}
             >

@@ -9,6 +9,9 @@
         height: 100vh;
         // max-height: 8.14rem !important;
         position: relative;
+        // position: fixed;
+        // top: 0;
+        // z-index: 999;
 
         .anmationShow {
             animation: opacityShow 1s;
@@ -52,6 +55,8 @@
         }
         .animationText{
             opacity: 0;
+            position: relative;
+            z-index: 99;
         }
 
         .logoBlock {
@@ -305,6 +310,17 @@
     .link {
         color: #ffffff;
     }
+    // .bodyBlock1{
+    //     height: 20vh;
+    // }
+    // .bodyBlock2{
+    //     height: 100vh;
+    //     display: inline-block;
+    // }
+    // .scrollThis{
+    //     position: absolute;
+    //     top: 20vh;
+    // }
 
 
 }
