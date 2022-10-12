@@ -19,6 +19,7 @@ export default class HomeMobileAn extends Component {
     Minutes: 0,
     Seconds: 0,
     v1: "video1",
+    v2: "video2",
   };
 
   goWeb = () => {
@@ -87,20 +88,21 @@ export default class HomeMobileAn extends Component {
     setInterval(() => {
       this.showTime();
     }, 1000);
-  }  
-  
-  goAgreement = ()=>{
-    window.location.href = '/#/agreement?type=all'
-   }
+  }
 
-
+  goAgreement = () => {
+    window.location.href = "/#/agreement?type=all";
+  };
+  playV2 = () =>{
+    var elevideo = document.getElementById("video2");
+    elevideo.play()
+  }
 
   render() {
     return (
       <div className={styles.home_page}>
         <div className={styles.headBlock}>
           <div className={styles.video_block}>
-
             <video
               className={`${styles.video} ${
                 this.state.isshow ? styles.show : styles.hidden
@@ -114,7 +116,11 @@ export default class HomeMobileAn extends Component {
               data-wf-ignore="true"
               data-object-fit="cover"
             >
-              <source src="./loopMobile.mp4" type="video/mp4" data-wf-ignore="true" />
+              <source
+                src="./loopMobile.mp4"
+                type="video/mp4"
+                data-wf-ignore="true"
+              />
               您的浏览器不支持 video 标签。
             </video>
 
@@ -138,9 +144,6 @@ export default class HomeMobileAn extends Component {
               />
               您的浏览器不支持 video 标签。
             </video>
-
-            
-
           </div>
           <div className={styles.logoBlock}>
             <img src={LogoText} />
@@ -170,15 +173,34 @@ export default class HomeMobileAn extends Component {
           >
             <img src={Button} />
           </div>
-          <div
-            className={styles.termsBlock}
-          >
-              <Link
-              className={`${styles.link}`}
-          to={`/agreement/${'type'}`}
-          > Terms & Conditions of Service</Link>
-           
+          <div className={styles.termsBlock}>
+            <Link className={`${styles.link}`} to={`/agreement/${"type"}`}>
+              {" "}
+              Terms & Conditions of Service
+            </Link>
           </div>
+        </div>
+        <div className={styles.boxingBlock}>
+          <div className={styles.video_block}>
+            <video
+              id={this.state.v2}
+              className={`${styles.video}`}
+              preload="auto"
+              controlsList="nodownload"
+              muted
+              playsInline
+              data-wf-ignore="true"
+              data-object-fit="cover"
+            >
+              <source
+                src="./startMobile.mp4"
+                type="video/mp4"
+                data-wf-ignore="true"
+              />
+              您的浏览器不支持 video 标签。
+            </video>
+          </div>
+          <div className={styles.boxingButton} onClick={() => {this.playV2()}}>播放</div>
         </div>
       </div>
     );
