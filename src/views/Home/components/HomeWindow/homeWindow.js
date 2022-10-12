@@ -39,6 +39,8 @@ export default class HomeWindow extends Component {
     balloonCardShow: false,
     isScollerActive: false,
     rotatingActive: false,
+    boxingTextShow:false,
+    boxingCardsShow:false,
   };
 
   goWeb = () => {
@@ -200,13 +202,50 @@ export default class HomeWindow extends Component {
             >
               Next Gen Web 3.0 Gaming Platform
             </div>
-            <div className={styles.disGameBlock}>
-              <div className={styles.disGameTitle}>Discover our games</div>
-              <div className={styles.disGameContent}>Our portfolio of hyper-casual and casual games has over 6 billion downloads and entertain over 300 million people per month.</div>
-            </div>
-            <div className={styles.disGameSwiper}>
-              <BoxingSlider/>
-            </div>
+            <ScrollPercentage
+              as="div"
+              onChange={(percentage, entry) => {
+                console.log(percentage);
+                if (percentage > 0.3) {
+                  this.setState({
+                    boxingTextShow: true,
+                  });
+                }
+                if (percentage === 0) {
+                  this.setState({
+                    boxingTextShow: false,
+                  });
+                }
+              }}
+            >
+              <div className={`${styles.disGameBlock} ${this.state.boxingTextShow?styles.boxingTextAn:''}`}>
+                <div className={styles.disGameTitle}>Discover our games</div>
+                <div className={styles.disGameContent}>
+                  Our portfolio of hyper-casual and casual games has over 6
+                  billion downloads and entertain over 300 million people per
+                  month.
+                </div>
+              </div>
+            </ScrollPercentage>
+            <ScrollPercentage
+              as="div"
+              onChange={(percentage, entry) => {
+                if (percentage > 0.3) {
+                  this.setState({
+                    boxingCardsShow: true,
+                  });
+                }
+                if (percentage === 0) {
+                  this.setState({
+                    boxingCardsShow: false,
+                  });
+                }
+              }}
+            >
+              <div className={`${styles.disGameSwiper} ${this.state.boxingCardsShow?styles.boxingCardAn:''}`}>
+                <BoxingSlider />
+              </div>
+            </ScrollPercentage>
           </div>
         </div>
 
@@ -225,9 +264,7 @@ export default class HomeWindow extends Component {
             }
           }}
         >
-          <div className={styles.bodyBlock1}>
-          
-          </div>
+          <div className={styles.bodyBlock1}></div>
         </ScrollPercentage>
 
         <div className={styles.bodyBlock2}></div>
@@ -236,7 +273,6 @@ export default class HomeWindow extends Component {
           <ScrollPercentage
             as="div"
             onChange={(percentage, entry) => {
-              console.log(percentage);
               if (percentage > 0.42771577380952377) {
                 this.setState({
                   balloonCardShow: true,

@@ -207,14 +207,18 @@
                 color: #FFFFFF;
                 font-family: 'Murecho';
                 font-weight: 900;
-                left: -12rem;
+                left: -24rem;
             }
+           
+
+
 
             .disGameBlock {
                 margin-top: 4rem;
-                margin-left: 2rem;
+                margin-left: 14rem;
                 width: 6.8rem;
                 text-align: left;
+                opacity: 0;
 
                 .disGameTitle {
                     font-family: 'Murecho';
@@ -234,14 +238,55 @@
                     color: #D8D7E8;
                 }
             }
+
+            .boxingTextAn{
+                animation: boxingTextAnimation 1s;
+                animation-fill-mode: forwards;
+            }
+
+            @keyframes boxingTextAnimation {
+                0% {
+    
+                    margin-left: 14rem;
+                    opacity: 0;
+                }
+    
+                100% {
+    
+                    margin-left: 2rem;
+                    opacity: 1;
+    
+                }
+            }
+           
             .disGameSwiper{
                 margin-top: 0.5rem;
                 width: 12.4rem;
                 overflow: hidden;
                 position: relative;
-                left: 4rem;
+                left: 14rem;
                 height: 6rem;
                 // float: right;
+                opacity: 0;
+            }
+
+            .boxingCardAn{
+                animation: boxinCardAnimation 1s;
+                animation-fill-mode: forwards;
+            }
+            @keyframes boxinCardAnimation {
+                0% {
+    
+                    left: 14rem;
+                    opacity: 0;
+                }
+    
+                100% {
+    
+                    left: 4rem;
+                    opacity: 1;
+    
+                }
             }
         }
     }
