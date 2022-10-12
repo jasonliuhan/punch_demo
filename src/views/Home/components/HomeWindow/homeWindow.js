@@ -151,7 +151,7 @@ export default class HomeWindow extends Component {
               }`}
               autoPlay
               muted
-              src="./boxing.mp4"
+              src="./boxingMobile.mp4"
             ></video>
           </div>
           <div
