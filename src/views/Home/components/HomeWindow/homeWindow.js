@@ -32,6 +32,7 @@ export default class HomeWindow extends Component {
     Seconds: 0,
     v1: "video1",
     v2: "video2",
+    v3: "video3",
     float: false,
     textYValue: null,
     textShow: false,
@@ -41,6 +42,7 @@ export default class HomeWindow extends Component {
     rotatingActive: false,
     boxingTextShow:false,
     boxingCardsShow:false,
+    startStatu:false
   };
 
   goWeb = () => {
@@ -107,6 +109,15 @@ export default class HomeWindow extends Component {
 
   goTop = () => {
     window.scrollTo(0, 0);
+  };
+  scrollPage = () =>{
+    let height = document.body.clientHeight;
+    window.scrollTo(0, height*0.03);
+  }
+
+  playV3 = () => {
+    var elevideo = document.getElementById("video3");
+    elevideo.play();
   };
 
   componentDidMount() {
@@ -187,7 +198,8 @@ export default class HomeWindow extends Component {
             </div>
             <div
               onClick={() => {
-                this.goWeb();
+                // this.goWeb();
+                this.scrollPage()
               }}
               className={`${styles.buttonBlock} `}
             >
@@ -273,7 +285,12 @@ export default class HomeWindow extends Component {
           <ScrollPercentage
             as="div"
             onChange={(percentage, entry) => {
-              if (percentage > 0.42771577380952377) {
+              if (percentage > 0.42771577380952377 && !this.state.startStatu) {
+                  this.setState({
+                    startStatu: true,
+                  });
+                  this.playV3();
+                
                 this.setState({
                   balloonCardShow: true,
                 });
@@ -281,14 +298,14 @@ export default class HomeWindow extends Component {
               if (percentage === 0) {
                 this.setState({
                   balloonCardShow: false,
+                  startStatu:false
                 });
               }
             }}
           >
             <video
+              id={this.state.v3}
               className={`${styles.balloonVideo}`}
-              autoPlay
-              loop
               muted
               src="./balloonVideo.mp4"
             ></video>

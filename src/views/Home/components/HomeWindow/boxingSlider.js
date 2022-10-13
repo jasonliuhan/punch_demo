@@ -5,12 +5,14 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 
 import styles from "./boxingSlider.module.scss";
+import "./boxingSlider.scss"
 
 
 export default class BoxingSlider extends Component {
   render() {
     const settings = {
       dots: true,
+      dotsClass:"slick-dots1",//自定义指示器的样式
       infinite: true,
       speed: 500,
       slidesToShow: 3,
@@ -39,6 +41,7 @@ export default class BoxingSlider extends Component {
           <div className={styles.sliderItem}>
             <div className={styles.itemCard}></div>
           </div>
+          
         </Slider>
       </div>
     );
