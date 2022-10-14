@@ -15,6 +15,7 @@ import DayUnit from "../../../../assets/home/Days.png";
 import HoursUnit from "../../../../assets/home/Hours.png";
 import MinutesUnit from "../../../../assets/home/Minutes.png";
 import SecondsUnit from "../../../../assets/home/Seconds.png";
+import LeanMoreImg from "../../../../assets/home/leanMore.png"
 
 import HeadPortrait1 from "../../../../assets/home/Mask group1.png";
 import HeadPortrait2 from "../../../../assets/home/Mask group2.png";
@@ -204,6 +205,12 @@ export default class HomeWindow extends Component {
               className={`${styles.buttonBlock} `}
             >
               <img src={Button} />
+            </div>
+            <div  onClick={() => {
+                this.scrollPage()
+              }}
+              className={`${styles.leanMoreBlock} `}>
+              <img src={LeanMoreImg} />
             </div>
           </div>
           <div className={`${styles.boxingContent}`}>
