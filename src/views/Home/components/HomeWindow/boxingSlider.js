@@ -8,6 +8,8 @@ import styles from "./boxingSlider.module.scss";
 import "./boxingSlider.scss"
 
 
+
+
 export default class BoxingSlider extends Component {
   render() {
     const settings = {
@@ -24,22 +26,70 @@ export default class BoxingSlider extends Component {
       <div className={styles.block}>
         <Slider {...settings}>
           <div className={styles.sliderItem}>
-            <div className={styles.itemCard}></div>
+            <div className={styles.itemCard}>
+            <video
+              className={`${styles.video}`}
+              autoPlay
+              loop
+              muted
+              src="./1mp4.mp4"
+            ></video>
+            </div>
           </div>
           <div className={styles.sliderItem}>
-            <div className={styles.itemCard}></div>
+            <div className={styles.itemCard}>
+            <video
+              className={`${styles.video}`}
+              autoPlay
+              loop
+              muted
+              src="./2mp4.mp4"
+            ></video>
+            </div>
           </div>
           <div className={styles.sliderItem}>
-            <div className={styles.itemCard}></div>
+            <div className={styles.itemCard}>
+            <video
+              className={`${styles.video}`}
+              autoPlay
+              loop
+              muted
+              src="./3mp4.mp4"
+            ></video>
+            </div>
           </div>
           <div className={styles.sliderItem}>
-            <div className={styles.itemCard}></div>
+            <div className={styles.itemCard}>
+            <video
+              className={`${styles.video}`}
+              autoPlay
+              loop
+              muted
+              src="./1mp4.mp4"
+            ></video>
+            </div>
           </div>
           <div className={styles.sliderItem}>
-            <div className={styles.itemCard}></div>
+            <div className={styles.itemCard}>
+            <video
+              className={`${styles.video}`}
+              autoPlay
+              loop
+              muted
+              src="./2mp4.mp4"
+            ></video>
+            </div>
           </div>
           <div className={styles.sliderItem}>
-            <div className={styles.itemCard}></div>
+            <div className={styles.itemCard}>
+            <video
+              className={`${styles.video}`}
+              autoPlay
+              loop
+              muted
+              src="./3mp4.mp4"
+            ></video>
+            </div>
           </div>
           
         </Slider>
