@@ -18,9 +18,7 @@ export default class BoxingSlider extends Component {
       infinite: true,
       speed: 500,
       slidesToShow: 3,
-      slidesToScroll: 3,
-      initialSlide: 0,
-      arrows:false,
+      slidesToScroll: 1
     };
     return (
       <div className={styles.block}>
@@ -65,32 +63,12 @@ export default class BoxingSlider extends Component {
               autoPlay
               loop
               muted
-              src="./1mp4.mp4"
-            ></video>
-            </div>
-          </div>
-          <div className={styles.sliderItem}>
-            <div className={styles.itemCard}>
-            <video
-              className={`${styles.video}`}
-              autoPlay
-              loop
-              muted
               src="./2mp4.mp4"
             ></video>
             </div>
           </div>
-          <div className={styles.sliderItem}>
-            <div className={styles.itemCard}>
-            <video
-              className={`${styles.video}`}
-              autoPlay
-              loop
-              muted
-              src="./3mp4.mp4"
-            ></video>
-            </div>
-          </div>
+       
+         
           
         </Slider>
       </div>
