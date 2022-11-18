@@ -22,6 +22,9 @@ import HeadPortrait2 from "../../../../assets/home/Mask group2.png";
 import HeadPortrait3 from "../../../../assets/home/Mask group3.png";
 import HeadPortrait4 from "../../../../assets/home/Mask group4.png";
 
+import Next from "../../../../assets/home/Next Gen Web 3.0 Gaming Platform.png"
+import Discover from "../../../../assets/home/Discover our games.png"
+
 import BoxingSlider from "./boxingSlider";
 
 export default class HomeWindow extends Component {
@@ -219,7 +222,7 @@ export default class HomeWindow extends Component {
                 this.state.rotatingActive ? styles.animationLeft : ""
               }`}
             >
-              Next Gen Web 3.0 Gaming Platform
+             <img className={styles.next} src={Next} />
             </div>
             <ScrollPercentage
               as="div"
@@ -238,12 +241,19 @@ export default class HomeWindow extends Component {
               }}
             >
               <div className={`${styles.disGameBlock} ${this.state.boxingTextShow?styles.boxingTextAn:''}`}>
-                <div className={styles.disGameTitle}>Discover our games</div>
+                {/* <div className={styles.disGameTitle}>Discover our games</div>
+                <div className={styles.disGameContent}>
+                  Our portfolio of hyper-casual and casual games has over 6
+                  billion downloads and entertain over 300 million people per
+                  month.
+                </div> */}
+                <img className={styles.discover} src={Discover} />
                 <div className={styles.disGameContent}>
                   Our portfolio of hyper-casual and casual games has over 6
                   billion downloads and entertain over 300 million people per
                   month.
                 </div>
+                
               </div>
             </ScrollPercentage>
             <ScrollPercentage
