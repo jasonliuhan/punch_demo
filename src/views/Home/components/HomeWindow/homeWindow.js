@@ -216,7 +216,16 @@ export default class HomeWindow extends Component {
               <img src={LeanMoreImg} />
             </div>
           </div>
+
           <div className={`${styles.boxingContent}`}>
+          <div className={`${styles.logoBlock} ${styles.logoBlocksecont} ${this.state.rotatingActive ? styles.animationLeft : ""}`  }>
+              <img
+                onClick={() => {
+                  this.goTop();
+                }}
+                src={LogoText}
+              />
+            </div>
             <div
               className={`${styles.boxingText} ${
                 this.state.rotatingActive ? styles.animationLeft : ""
